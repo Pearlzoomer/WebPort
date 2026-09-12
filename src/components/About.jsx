@@ -9,17 +9,12 @@ export default function About() {
             <div style={{ position: "absolute", top: -14, left: -14, right: 14, bottom: 14, borderRadius: 22, border: "1px solid rgba(196,168,130,0.2)" }} />
             <div style={{ borderRadius: 20, overflow: "hidden", aspectRatio: "4/5", position: "relative" }}>
               <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=750&fit=crop&auto=format"
+                src="src/image.jpeg"
                 alt="Noluthando Zuma — network engineer"
                 style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.85) saturate(0.9)" }}
               />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(255,121,176,0.1) 0%, transparent 50%)" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "30%", background: "linear-gradient(to top, rgba(7,6,8,0.7), transparent)" }} />
-            </div>
-            <div className="glass-card" style={{ position: "absolute", bottom: 32, right: -20, padding: "0.9rem 1.2rem", textAlign: "center" }}>
-              <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1.3rem", color: "#FF79B0" }}>2+</div>
-              <div style={{ fontFamily: "var(--font-body)", fontSize: "0.7rem", color: "#FFFFFF" }}>Years Studying</div>
-              <div style={{ fontFamily: "var(--font-body)", fontSize: "0.7rem", color: "#FFFFFF" }}>Networking</div>
             </div>
           </div>
 
