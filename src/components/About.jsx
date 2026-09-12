@@ -15,7 +15,7 @@ export default function About() {
               />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(255,121,176,0.1) 0%, transparent 50%)" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "30%", background: "linear-gradient(to top, rgba(7,6,8,0.7), transparent)" }} />
-            </div>
+            </div>g
           </div>
 
           <div>
