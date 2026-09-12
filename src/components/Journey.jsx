@@ -23,17 +23,17 @@ export default function Journey() {
           <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(1.8rem, 3vw, 2.4rem)", color: "#FF79B0" }}>The Path So Far</h2>
         </div>
 
-        <div style={{ position: "relative" }}>
-          <div className="timeline-line" style={{ position: "absolute", left: "50%", top: 0, bottom: 0, width: 1.5, transform: "translateX(-50%)" }} />
+        <div className="journey-timeline">
+          <div className="timeline-line journey-line" />
 
           <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
             {timelineItems.map((item, i) => {
               const isLeft = i % 2 === 0;
               const ts = typeStyles[item.type];
               return (
-                <div key={item.year + item.title} style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: "1.5rem", alignItems: "center" }}>
+                <div key={item.year + item.title} className="journey-row">
                   {isLeft ? (
-                    <div className="glass-card" style={{ padding: "1.2rem 1.4rem", textAlign: "right" }}>
+                    <div className="journey-card glass-card" style={{ padding: "1.2rem 1.4rem", textAlign: "right" }}>
                       <span style={{ fontFamily: "var(--font-body)", fontSize: "0.68rem", fontWeight: 600, color: ts.dot, background: `${ts.dot}15`, borderRadius: 50, padding: "2px 10px" }}>{ts.label}</span>
                       <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "0.9rem", color: "#FF79B0", margin: "0.55rem 0 0.2rem" }}>{item.title}</h3>
                       <div style={{ fontFamily: "var(--font-body)", fontSize: "0.75rem", color: "#FFFFFF", marginBottom: "0.45rem" }}>{item.org}</div>
@@ -43,13 +43,13 @@ export default function Journey() {
                     <div />
                   )}
 
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, zIndex: 2 }}>
+                  <div className="journey-marker">
                     <div style={{ width: 13, height: 13, borderRadius: "50%", background: ts.dot, border: "2.5px solid #070608", boxShadow: `0 0 0 2px ${ts.dot}40, 0 0 12px ${ts.dot}30` }} />
                     <div style={{ fontFamily: "var(--font-heading)", fontSize: "0.68rem", fontWeight: 700, color: "#FFFFFF", letterSpacing: "0.04em" }}>{item.year}</div>
                   </div>
 
                   {!isLeft ? (
-                    <div className="glass-card" style={{ padding: "1.2rem 1.4rem" }}>
+                    <div className="journey-card glass-card" style={{ padding: "1.2rem 1.4rem" }}>
                       <span style={{ fontFamily: "var(--font-body)", fontSize: "0.68rem", fontWeight: 600, color: ts.dot, background: `${ts.dot}15`, borderRadius: 50, padding: "2px 10px" }}>{ts.label}</span>
                       <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "0.9rem", color: "#FF79B0", margin: "0.55rem 0 0.2rem" }}>{item.title}</h3>
                       <div style={{ fontFamily: "var(--font-body)", fontSize: "0.75rem", color: "#FFFFFF", marginBottom: "0.45rem" }}>{item.org}</div>

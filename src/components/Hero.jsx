@@ -78,12 +78,12 @@ export default function Hero() {
         </div>
 
         <div
-          className="absolute animate-fade-in"
-          style={{ right: "5%", top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "1rem", animationDelay: "0.6s", opacity: 0 }}
+          className="hero-stats animate-fade-in"
+          style={{ animationDelay: "0.6s", opacity: 0 }}
           aria-hidden="true"
         >
           {stats.map((s) => (
-            <div key={s.label} className="glass-card" style={{ padding: "1rem 1.25rem", textAlign: "center", minWidth: 122 }}>
+            <div key={s.label} className="glass-card hero-stat-card" style={{ padding: "1rem 1.25rem", textAlign: "center", minWidth: 122 }}>
               <div style={{ fontSize: "1rem", color: "#FF79B0", marginBottom: 4 }}>{s.symbol}</div>
               <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1.5rem", color: "#FF79B0" }}>{s.value}</div>
               <div style={{ fontFamily: "var(--font-body)", fontSize: "0.7rem", color: "#FFFFFF", marginTop: 2 }}>{s.label}</div>

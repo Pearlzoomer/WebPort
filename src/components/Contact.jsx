@@ -9,7 +9,7 @@ const contactItems = [
       </>
     ),
     label: "Email",
-    value: "zumat9509@gmail.com",
+    value: "noluthando.zuma@email.com",
   },
   {
     icon: (
@@ -30,12 +30,12 @@ const contactItems = [
       </>
     ),
     label: "LinkedIn",
-    value: "www.linkedin.com/in/noluthando-zuma-814792232",
+    value: "linkedin.com/in/noluthando-zuma",
   },
   {
     icon: <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />,
     label: "GitHub",
-    value: "https://github.com/Pearlzoomer",
+    value: "github.com/noluthando-zuma",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function Contact() {
       <div style={{ position: "absolute", top: 0, left: "10%", right: "10%", height: 1, background: "linear-gradient(to right, transparent, rgba(255,121,176,0.12), transparent)" }} />
 
       <div className="max-w-5xl mx-auto">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }}>
+        <div className="contact-grid" style={{ alignItems: "start" }}>
           <div>
             <div className="section-title mb-3">Get In Touch</div>
             <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(1.8rem, 3vw, 2.3rem)", color: "#FF79B0", lineHeight: 1.2, marginBottom: "1.2rem" }}>
@@ -100,7 +100,7 @@ export default function Contact() {
                 }}
                 style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}
               >
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.9rem" }}>
+                <div className="contact-form-row" style={{ gap: "0.9rem" }}>
                   {[
                     { id: "name", label: "Name", type: "text", placeholder: "Alex Johnson" },
                     { id: "email", label: "Email", type: "email", placeholder: "alex@company.com" },
