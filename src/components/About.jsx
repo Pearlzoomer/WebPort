@@ -1,10 +1,12 @@
+import Image from "../image.jpeg";
+
 export default function About() {
   return (
     <section id="about" style={{ background: "#0C0A0D", padding: "7rem 1.5rem", position: "relative" }}>
       <div style={{ position: "absolute", top: 0, left: "10%", right: "10%", height: 1, background: "linear-gradient(to right, transparent, rgba(255,121,176,0.15), transparent)" }} />
 
       <div className="max-w-6xl mx-auto">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center" }}>
+        <div className="about-grid" style={{ alignItems: "center" }}>
           <div style={{ position: "relative" }}>
             <div style={{ position: "absolute", top: -14, left: -14, right: 14, bottom: 14, borderRadius: 22, border: "1px solid rgba(196,168,130,0.2)" }} />
             <div style={{ borderRadius: 20, overflow: "hidden", aspectRatio: "4/5", position: "relative" }}>

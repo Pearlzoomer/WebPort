@@ -8,7 +8,7 @@ import Journey from "./components/Journey.jsx";
 import Certifications from "./components/Certifications.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
-import Image from "./image.jpeg";
+
 
 export default function App() {
   return (
