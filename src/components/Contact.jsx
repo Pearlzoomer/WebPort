@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+
 const contactItems = [
   {
     icon: (
@@ -41,7 +43,37 @@ const contactItems = [
 
 export default function Contact() {
   const [formState, setFormState] = useState({ name: "", email: "", subject: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!FORMSPREE_ENDPOINT) {
+      console.error("Missing VITE_FORMSPREE_ENDPOINT — set it in your .env file (and on Vercel).");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        setFormState({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error("Contact form submission failed:", err);
+      setStatus("error");
+    }
+  }
 
   return (
     <section id="contact" style={{ background: "#0C0A0D", padding: "7rem 1.5rem", position: "relative" }}>
@@ -81,7 +113,7 @@ export default function Contact() {
           </div>
 
           <div className="glass-card" style={{ padding: "2.25rem" }}>
-            {sent ? (
+            {status === "sent" ? (
               <div style={{ textAlign: "center", padding: "2rem 0" }}>
                 <div style={{ width: 60, height: 60, borderRadius: "50%", background: "rgba(255,121,176,0.1)", border: "1px solid rgba(255,121,176,0.2)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF79B0" strokeWidth="2">
@@ -90,16 +122,10 @@ export default function Contact() {
                 </div>
                 <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1.2rem", color: "#FF79B0", marginBottom: "0.5rem" }}>Message Sent!</h3>
                 <p style={{ fontFamily: "var(--font-body)", fontSize: "0.88rem", color: "#FFFFFF" }}>I'll respond within 24 hours.</p>
-                <button className="btn-primary" style={{ marginTop: "1.5rem" }} onClick={() => setSent(false)}>Send Another</button>
+                <button className="btn-primary" style={{ marginTop: "1.5rem" }} onClick={() => setStatus("idle")}>Send Another</button>
               </div>
             ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-                style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}
-              >
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}>
                 <div className="contact-form-row" style={{ gap: "0.9rem" }}>
                   {[
                     { id: "name", label: "Name", type: "text", placeholder: "Alex Johnson" },
@@ -143,12 +169,19 @@ export default function Contact() {
                     style={{ width: "100%", padding: "9px 13px", borderRadius: 10, border: "1px solid rgba(255,121,176,0.15)", background: "rgba(255,255,255,0.04)", fontFamily: "var(--font-body)", fontSize: "0.86rem", color: "#FFFFFF", resize: "vertical" }}
                   />
                 </div>
-                <button type="submit" className="btn-primary" style={{ alignSelf: "flex-start" }}>
+
+                {status === "error" && (
+                  <div style={{ fontFamily: "var(--font-body)", fontSize: "0.8rem", color: "#FF6B6B", background: "rgba(255,107,107,0.08)", border: "1px solid rgba(255,107,107,0.2)", borderRadius: 10, padding: "10px 14px" }}>
+                    Something went wrong sending your message. Please try again, or email me directly.
+                  </div>
+                )}
+
+                <button type="submit" className="btn-primary" style={{ alignSelf: "flex-start", opacity: status === "sending" ? 0.7 : 1, cursor: status === "sending" ? "not-allowed" : "pointer" }} disabled={status === "sending"}>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="22" y1="2" x2="11" y2="13" />
                     <polygon points="22 2 15 22 11 13 2 9 22 2" />
                   </svg>
-                  Send Message
+                  {status === "sending" ? "Sending..." : "Send Message"}
                 </button>
               </form>
             )}
